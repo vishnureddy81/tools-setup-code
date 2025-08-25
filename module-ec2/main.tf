@@ -37,7 +37,14 @@ resource "aws_instance" "instance" {
   tags = {
     Name = var.tool_name
   }
+
+
+root_block_device {
+  volume_size = var.volume_size
 }
+}
+
+
 resource "aws_route53_record" "record-public" {
   zone_id = var.zone_id
   name    = "${var.tool_name}.${var.domain_name}"

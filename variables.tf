@@ -7,7 +7,7 @@ variable "tools" {
   }
 }
 
-variable "zone_id " {
+variable "zone_id" {
   default = "Z05470293UTKVXA4543KK"
 }
 variable "domain_name" {

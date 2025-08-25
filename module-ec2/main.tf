@@ -46,9 +46,6 @@ resource "aws_route53_record" "record-public" {
   records = [aws_instance.instance.public_ip]
 }
 
-root_block_deevice {
-  volume_size = var.volume_size
-}
 
 
 resource "aws_route53_record" "record-internal" {

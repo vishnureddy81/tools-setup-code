@@ -17,9 +17,9 @@ variable "vault_token" {}
 
 resource "vault_mount" "roboshop-dev" {
   path        = "roboshop-dev"
-  type        = "roboshop"
+  type        = "kv"
   options     = { version = "2" }
-  description = "roboshop dev secrets"
+  description = "KV Version 2 secret engine mount"
 }
 
 
@@ -29,8 +29,9 @@ resource "vault_generic_secret" "roboshop-dev" {
 
   data_json = <<EOT
 {
-  "foo": "bar",
-  "pizza": "cheese"
+"foo": "bar"
+"pizza": "cheese"
+
 }
 EOT
 

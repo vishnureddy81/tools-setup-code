@@ -23,11 +23,19 @@
 #    name: vault
 #    state: restarted
 
-- name: Install and Configure Vault
+
+
+###
+- name: Setup HashiCorp Vault
   hosts: all
   become: true
   tasks:
-    - name: Download HashiCorp repo file
+
+    # Optional step, remove if not needed
+    # - name: Set custom prompt (example)
+    #   ansible.builtin.shell: echo "PS1='[Vault Node] \\u@\\h:\\w\\$ '" >> /etc/profile.d/prompt.sh
+
+    - name: Download Hashicorp repo file
       ansible.builtin.get_url:
         url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
         dest: /etc/yum.repos.d/hashicorp.repo
@@ -45,23 +53,8 @@
         group: root
         mode: '0644'
 
-    - name: Enable and Restart Vault service
+    - name: Enable and Start Vault Service
       ansible.builtin.systemd:
         name: vault
-        state: restarted
         enabled: true
-
-    - name: Open Vault port 8200 in firewall
-      ansible.posix.firewalld:
-        port: 8200/tcp
-        permanent: true
-        state: enabled
-        immediate: yes
-
-    - name: Allow Vault port in SELinux
-      ansible.builtin.command: semanage port -a -t http_port_t -p tcp 8200
-      args:
-        warn: false
-      register: selinux_result
-      failed_when: selinux_result.rc not in [0,1]  # ignore if already added
-      changed_when: selinux_result.rc == 0
+        state: restarted

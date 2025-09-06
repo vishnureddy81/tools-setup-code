@@ -1,60 +1,27 @@
-#- name: Set Prompt
-#  ansible.builtin.shell: set-prompt {{ tool_name }}
-#
-#
-#- name: Download Hashicorp repo file
-#  ansible.builtin.get_url:
-#    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-#    dest: /etc/yum.repos.d/hashicorp.repo
-#
-#
-#- name: install vault
-#  ansible.builtin.dnf:
-#    name: vault
-#    state: installed
-#
-#- name: Copy Vault config
-#  ansible.builtin.copy:
-#    src: vault.hcl
-#    dest: /etc/vault.d/vault.hcl
-#
-#- name: Start Vault Service
-#  ansible.builtin.systemd_service:
-#    name: vault
-#    state: restarted
+- name: Set Prompt
+  ansible.builtin.shell: set-prompt {{ tool_name }}
+
+
+- name: Download Hashicorp repo file
+  ansible.builtin.get_url:
+    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+
+
+- name: install vault
+  ansible.builtin.dnf:
+    name: vault
+    state: installed
+
+- name: Copy Vault config
+  ansible.builtin.copy:
+    src: vault.hcl
+    dest: /etc/vault.d/vault.hcl
+
+- name: Start Vault Service
+  ansible.builtin.systemd_service:
+    name: vault
+    state: restarted
 
 
 
-###
-- name: Setup HashiCorp Vault
-  hosts: all
-  become: true
-  tasks:
-
-    # Optional step, remove if not needed
-    # - name: Set custom prompt (example)
-    #   ansible.builtin.shell: echo "PS1='[Vault Node] \\u@\\h:\\w\\$ '" >> /etc/profile.d/prompt.sh
-
-    - name: Download Hashicorp repo file
-      ansible.builtin.get_url:
-        url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-        dest: /etc/yum.repos.d/hashicorp.repo
-
-    - name: Install Vault
-      ansible.builtin.dnf:
-        name: vault
-        state: present
-
-    - name: Copy Vault config
-      ansible.builtin.copy:
-        src: vault.hcl
-        dest: /etc/vault.d/vault.hcl
-        owner: root
-        group: root
-        mode: '0644'
-
-    - name: Enable and Start Vault Service
-      ansible.builtin.systemd:
-        name: vault
-        enabled: true
-        state: restarted

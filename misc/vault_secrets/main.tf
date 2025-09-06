@@ -15,6 +15,9 @@ provider "vault" {
 
 variable "vault_token" {}
 
+
+
+
 resource "vault_mount" "roboshop-dev" {
   path        = "roboshop-dev"
   type        = "kv"
@@ -29,8 +32,11 @@ resource "vault_generic_secret" "roboshop-dev" {
 
   data_json = <<EOT
 {
-"foo": "bar"
-"pizza": "cheese"
+{
+  "foo": "bar",
+  "pizza": "cheese"
+}
+
 
 }
 EOT

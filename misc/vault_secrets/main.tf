@@ -20,6 +20,7 @@ resource "vault_mount" "roboshop-dev" {
   type        = "kv"
   options     = { version = "2" }
   description = "RoboShop Dev Secrets"
+
 }
 
 resource "vault_generic_secret" "roboshop-dev" {

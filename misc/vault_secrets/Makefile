@@ -1,4 +1,3 @@
-
 default:
 	git pull
 	terraform init

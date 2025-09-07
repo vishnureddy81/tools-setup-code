@@ -2,8 +2,7 @@ variable "tools" {
   default = {
 
     vault = {
-      port         = {
-        vault_port = 8200
+      port         = 8200
       }
 
       volume_size   = 20
@@ -17,3 +16,4 @@ variable "zone_id" {
 variable "domain_name" {
   default = "vishnuredddy.online"
 }
+#

@@ -2,7 +2,10 @@ variable "tools" {
   default = {
 
     vault = {
-      port          = 8200
+      port         = {
+        vault_port = 8200
+      }
+
       volume_size   = 20
       instance_type = "t3.small"
     }

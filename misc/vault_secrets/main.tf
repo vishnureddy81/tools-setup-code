@@ -32,7 +32,6 @@ resource "vault_generic_secret" "roboshop-dev" {
 
   data_json = <<EOT
 {
-{
   "foo":   "bar",
   "pizza": "cheese"
 }

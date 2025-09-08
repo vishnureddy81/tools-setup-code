@@ -22,8 +22,9 @@ resource "vault_mount" "roboshop-dev" {
   description = "RoboShop Dev Secrets"
 }
 
-resource "vault_generic_secret" "roboshop-dev" {
-  path = "${vault_mount.roboshop-dev.path}/frontend"
+
+resource "vault_generic_secret" "frontend" {
+path = "${vault_mount.roboshop-dev.path}/frontend"
 
   data_json = <<EOT
 {

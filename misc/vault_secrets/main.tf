@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "vault" {
-  address = "http://vault-internal.vishnuredddy.online:8200"
+  address = "http://vault-internal.vishnureddy.online:8200"
   token   = var.vault_token
   skip_tls_verify = true
 }
@@ -22,9 +22,8 @@ resource "vault_mount" "roboshop-dev" {
   description = "RoboShop Dev Secrets"
 }
 
-resource "vault_generic_secret" "roboshop-dev"{
+resource "vault_generic_secret" "roboshop-dev" {
   path = "${vault_mount.roboshop-dev.path}/frontend"
-
 
   data_json = <<EOT
 {
@@ -33,4 +32,3 @@ resource "vault_generic_secret" "roboshop-dev"{
 }
 EOT
 }
-

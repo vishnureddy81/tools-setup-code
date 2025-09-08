@@ -33,5 +33,3 @@ resource "vault_generic_secret" "roboshop-dev" {
 EOT
 }
 
-
-##

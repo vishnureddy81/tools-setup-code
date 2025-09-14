@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "vault" {
-  address = "http://172.31.17.116:8200"
+  address = "http://vault-internal.rdevopsb81.online:8200"
   token   = var.vault_token
   skip_tls_verify = true
 }
@@ -28,9 +28,14 @@ path = "${vault_mount.roboshop-dev.path}/frontend"
 
   data_json = <<EOT
 {
-  "foo":   "bar",
-  "pizza": "cheese"
+  "catalogue_url":   "http://catalogue-dev.vishnureddy.online:8080/",
+  "cart_url":   "http://cart-dev.vishnureddy.online:8080/",
+  "user_url":   "http://user-dev.vishnureddy.online:8080/",
+  "shipping_url":   "http://shipping-dev.vishnureddy.online:8080/",
+  "payment_url":   "http://payment-dev.vishnureddy.online:8080/",
+  }
 }
 EOT
 }
+
 

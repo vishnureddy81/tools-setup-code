@@ -32,7 +32,7 @@ path = "${vault_mount.roboshop-dev.path}/frontend"
   "cart_url":   "http://cart-dev.vishnureddy.online:8080/",
   "user_url":   "http://user-dev.vishnureddy.online:8080/",
   "shipping_url":   "http://shipping-dev.vishnureddy.online:8080/",
-  "payment_url":   "http://payment-dev.vishnureddy.online:8080/",
+  "payment_url":   "http://payment-dev.vishnureddy.online:8080/"
   }
 }
 EOT

@@ -23,19 +23,33 @@ resource "vault_mount" "roboshop-dev" {
 }
 
 
+# resource "vault_generic_secret" "frontend" {
+# path = "${vault_mount.roboshop-dev.path}/frontend"
+#
+#   data_json = <<EOT
+#
+# {
+#   "catalogue_url":   "http://catalogue-dev.vishnureddy.online:8080/",
+#   "cart_url":   "http://cart-dev.vishnureddy.online:8080/",
+#   "user_url":   "http://user-dev.vishnureddy.online:8080/",
+#   "shipping_url":   "http://shipping-dev.vishnureddy.online:8080/",
+#   "payment_url":   "http://payment-dev.vishnureddy.online:8080/"
+#   }
+# }
+# EOT
+# }
+
+
 resource "vault_generic_secret" "frontend" {
-path = "${vault_mount.roboshop-dev.path}/frontend"
+  path = "${vault_mount.roboshop-dev.path}/frontend"
 
   data_json = <<EOT
 {
-  "catalogue_url":   "http://catalogue-dev.vishnureddy.online:8080/",
-  "cart_url":   "http://cart-dev.vishnureddy.online:8080/",
-  "user_url":   "http://user-dev.vishnureddy.online:8080/",
-  "shipping_url":   "http://shipping-dev.vishnureddy.online:8080/",
-  "payment_url":   "http://payment-dev.vishnureddy.online:8080/"
-  }
+  "catalogue_url": "http://catalogue-dev.vishnureddy.online:8080/",
+  "cart_url": "http://cart-dev.vishnureddy.online:8080/",
+  "user_url": "http://user-dev.vishnureddy.online:8080/",
+  "shipping_url": "http://shipping-dev.vishnureddy.online:8080/",
+  "payment_url": "http://payment-dev.vishnureddy.online:8080/"
 }
 EOT
 }
-
-
